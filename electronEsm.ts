@@ -1,6 +1,7 @@
-const { app, BrowserWindow } =  await import('electron')
+const { app, BrowserWindow, ipcMain } =  await import('electron')
 
 export {
     app,
-    BrowserWindow
+    BrowserWindow,
+    ipcMain
 }

@@ -1,6 +1,8 @@
 @media (prefers-color-scheme: light) {
     :root {
         --bg-1: #fff;
+        --bg-2: #ddd;
+        --bg-3: #c4c4c4;
         --accent: #08f;
         --accent-lighter: #33a0ff;
         --accent-text: #fff;
@@ -11,11 +13,17 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --bg-1: #222;
+        --bg-2: #333;
+        --bg-3: #444;
         --accent: #07f;
         --accent-lighter: #3392ff;
         --accent-text: #fff;
         --text: #fff;
     }
+}
+
+* {
+    width: fit-content;
 }
 
 body {
@@ -38,12 +46,23 @@ button {
     border: none;
     transition: background-color 150ms ease-in-out, scale 100ms ease-in-out;
     outline: none;
-    height: 32px;
+    min-height: 32px !important;
+    max-height: 32px !important;
+}
+
+button.secondary {
+    background-color: var(--bg-2);
+    color: var(--text);
 }
 
 button:hover,
-button:focus {
+button:focus-visible {
     background-color: var(--accent-lighter);
+}
+
+button.secondary:hover,
+button.secondary:focus-visible {
+    background-color: var(--bg-3);
 }
 
 button:active {
@@ -60,14 +79,18 @@ button:active {
 }
 
 .spinner.small {
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
 }
 
 .spinner.large {
     width: 100px;
     height: 100px;
     animation-duration: 0.5s;
+}
+
+button:not(.secondary) .spinner {
+    border-top-color: var(--accent-text);
 }
 
 @media (prefers-reduced-motion) {
@@ -83,6 +106,76 @@ button:active {
 
 @keyframes spin {
     to {
-        rotate: 360deg
+        rotate: 360deg;
     }
+}
+
+h1, h2, h3, h4 {
+    font-weight: 200;
+}
+
+h1, h2, h3, h4, p {
+    margin: 0;
+}
+
+.container {
+    padding: 8px;
+}
+
+.row {
+    display: flex;
+    gap: 8px;
+}
+
+.row > div:not(.spinner) {
+    height: fit-content !important;
+}
+
+.column {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+}
+
+.card {
+    background-color: var(--bg-2);
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.card.actionable:hover,
+.card.actionable:focus-visible {
+    background-color: var(--bg-3);
+    transition: background-color 150ms ease-in-out, scale 100ms ease-in-out;
+}
+
+.card.actionable:active {
+    scale: 0.95;
+}
+
+.card button.secondary,
+.card input {
+    background-color: var(--bg-3);
+}
+
+.card button.secondary:hover,
+.card button.secondary:focus-visible,
+.card input:hover,
+.card input:focus {
+    background-color: var(--bg-1);
+}
+
+input {
+    background-color: var(--bg-2);
+    padding: 8px;
+    color: var(--text);
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    transition: background-color 150ms ease-in-out, scale 100ms ease-in-out;
+}
+
+input:hover,
+input:focus {
+    background-color: var(--bg-3);
 }
