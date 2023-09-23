@@ -1,28 +1,33 @@
-import { BrowserWindow, ipcMain } from '../electronEsm.js'
+import { BrowserWindow, ipcMain } from '../electron'
 import { join } from 'path'
-import { makeID } from '../util.js'
+import { makeID } from '../share'
+import htmlShell from '../web/shell.html'
+
+export interface Signal {
+    name: string,
+    sender: (data: any) => void
+}
 
 export class Window {
-    width: number
-    height: number
-    protected _win: any
+    private _width: number
+    private _height: number
+    private _win: any
+    private _child: any
 
     constructor() {
-        this.width = 800
-        this.height = 600
+        this._width = 800
+        this._height = 600
         this._win = new BrowserWindow({
-            width: this.width,
-            height: this.height,
+            width: this._width,
+            height: this._height,
             title: "Dtfw window",
-            webPrefrences: {
-                preload: join(__dirname, 'node_modules', 'dtfw', 'preload.js')
+            webPreferences: {
+                preload: join(__dirname, 'preload.js')
             }
         })
 
         this._win.setMenu(null)
-        this._win.loadFile(
-            join(__dirname, 'node_modules', 'dtfw', 'web', 'shell.html')
-        )
+        this._win.loadURL(htmlShell)
     }
 
     devtools(): void {
@@ -37,5 +42,24 @@ export class Window {
         let id = makeID(20)
         ipcMain.on(`contentMessage__${id}`, callback)
         return id
+    }
+
+    requestSignal(): Signal {
+        let id = makeID(20)
+
+        return {
+            name: id,
+            sender: (data) => {
+                this._win.webContents.send(`contentSignal__${id}`, data)
+            }
+        }
+    }
+
+    setWidget(widget: any) {
+        this._child = widget
+    }
+
+    update() {
+        this._win.webContents.send('setInnerHtml', this._child.render())
     }
 }
