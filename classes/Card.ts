@@ -5,16 +5,18 @@ export class Card {
     private _child: any
     private _clickable: boolean
     private _message: string
+    private _sheet: boolean
 
     constructor(window: Window) {
         this._host = window
         this._clickable = false
+        this._sheet = false
     }
 
     render(): string {
         return `
             <div 
-                class="card${this._clickable ? ' clickable' : ''}"
+                class="card sheet-${this._sheet}${this._clickable ? ' clickable' : ''}"
                 ${
                     this._message == ''
                         ? ''
@@ -28,6 +30,10 @@ export class Card {
 
     setWidget(widget: any) {
         this._child = widget
+    }
+
+    sheet(status) {
+        this._sheet = status
     }
 
     click(callback: (event: any, data: any) => void) {

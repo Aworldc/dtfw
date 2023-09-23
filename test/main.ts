@@ -2,37 +2,37 @@ import {
     onOpen,
     enableQuitOnAllClose,
     Window,
-    Button,
-    Container,
-    Column,
-    Input
+    Tabs,
+    Row,
+    Card,
+    Column
 } from 'dtfw'
 
 onOpen(() => {
     let win = new Window()
-    win.title('My program')
 
+    win.title('My program')
     win.devtools()
 
-    let con = new Container(win)
-    let col = new Column(win)
+    let row = new Row(win)
 
-    let somethingButton = new Button(win)
-    somethingButton.text('Click me')
+    let mytabs = new Tabs(win)
+    mytabs.setItems(["Home", "Meep", "Settings"])
+    mytabs.setLayout("vertical")
 
-    let somethingInput = new Input(win)
-    somethingInput.set('A value')
+    let mycard = new Card(win)
+    mycard.sheet(true)
 
-    somethingButton.click(() => {
-        console.log(somethingInput.get())
-        somethingInput.set('A new value')
-    })
+    let cardlayout = new Column(win)
 
-    col.insert(somethingButton)
-    col.insert(somethingInput)
 
-    con.setWidget(col)
-    win.setWidget(con)
+
+    mycard.setWidget(cardlayout)
+
+    row.insert(mytabs)
+    row.insert(mycard)
+
+    win.setWidget(row)
 
     win.update()
 })
