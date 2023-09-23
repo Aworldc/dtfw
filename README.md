@@ -3,7 +3,10 @@ DeskTop FrameWork: A crappy wrapper around electron.js to provide an api similar
 
 ## Install
 ### Npm
-Not published yet. Will be at [https://npmjs.com/package/dtfw](https://npmjs.com/package/dtfw)
+```bash
+# do not use pnpm, it doesn't work, at least on my machine
+$ npm i dtfw
+```
 ### Manual
 1. Clone this repo into the .dtfw folder
    ```bash
