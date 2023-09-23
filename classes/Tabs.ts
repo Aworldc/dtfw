@@ -46,6 +46,6 @@ export class Tabs {
     }
 
     changed(callback: (index, value) => void) {
-
+        this._callback = callback
     }
 }
