@@ -13,7 +13,44 @@ Not published yet. Will be at [https://npmjs.com/package/dtfw](https://npmjs.com
    ```json
    "dtfw": "file:.dtfw"
    ```
+## Usage
+TODO
+### Building your own components
+Components in dtfw are just classes that take a window argument in the constructor, and implement a render method that returns some html. An example:
+```typescript
+// Router.ts
+import { Window } from 'dtfw'
 
+export class Router {
+    private _host: Window
+    private _page: string
+    private _pages: any
+
+    constructor(win) {
+        this._host = win
+        this._page = ""
+        this._pages = {}
+    }
+
+    addPage(name, rootWidget) {
+        this._pages[name] = rootWidget
+    }
+
+    setPage(name) {
+        this._page = name
+        this._host.update()
+    }
+
+    render() {
+        return this._pages[this._page].render()
+    }
+}
+```
+**Rules:**
+- All properties are private and their names start with an underscore.
+- Widgets should all be in their own typescript file.
+- The export class should be named whatever the widget would be
+- The file needs to be named whatever the export class is named
 ## Roadmap
 ### Components built
 - [x] Button
