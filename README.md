@@ -38,7 +38,6 @@ export class Router {
 
     setPage(name) {
         this._page = name
-        this._host.update()
     }
 
     render() {
