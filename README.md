@@ -22,11 +22,12 @@ Not published yet. Will be at [https://npmjs.com/package/dtfw](https://npmjs.com
 - [ ] Select
 - [ ] Dialog
 - [ ] Toast
-- [ ] Headerbar
+- [ ] Menubar
 - [ ] Tooltip
 - [ ] Image
 - [ ] Video
 - [ ] Sound
+- [ ] Icon
 ### Other
 - [ ] Make file picker apis
 - [ ] Ditch electron for something better
@@ -34,4 +35,5 @@ Not published yet. Will be at [https://npmjs.com/package/dtfw](https://npmjs.com
 - [ ] Make notification apis (native and custom)
 - [ ] Make a themeing api
 - [ ] Add more typography options
-- [ ] Make a cli (Running, scaffolding, packaging)
+- [ ] Make a cli (Running, scaffolding, bundling)
+- [ ] Icons in all the places
