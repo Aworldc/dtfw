@@ -9,7 +9,8 @@
         "build:main": "esbuild --bundle --minify --platform=node --format=esm --outfile=build/main.js --external:electron-nightly --external:electron --loader:.html=dataurl main.ts",
         "build:pre": "esbuild --bundle --watch --platform=node --format=cjs --outfile=build/preload.js --external:electron-nightly --external:electron --loader:.css=text .dtfw/preload.ts",
         "build": "start npm run build:main && start npm run build:pre",
-        "start": "start npm run dev:main && start npm run dev:pre && nodemon --exec \"electron .\""
+        "start:app": "nodemon --exec \"electron .\"",
+        "start": "start npm run dev:main && start npm run dev:pre && npm run start:app"
     },
     "dependencies": {
         "dtfw": "file:.dtfw"

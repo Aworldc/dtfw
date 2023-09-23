@@ -1,10 +1,10 @@
-import { Window } from "./Window"
+import { Window, Signal } from "./Window"
 
 export class Input {
     private _value: string
     private _message: string
     private _host: Window
-    private _update: import("C:/Users/Phill-Al/Desktop/Projects/dtfw/.dtfw/classes/Window").Signal
+    private _update: Signal
 
     constructor(window: Window) {
         this._value = ''
@@ -16,6 +16,7 @@ export class Input {
     }
 
     set(text: string): void {
+        this._value = text
         this._update.sender(text)
     }
 
@@ -27,18 +28,13 @@ export class Input {
         return `
             <input
                 type="text"
-                id="${this._message}"
+                id="meep${this._message}"
                 value="${this._value}"
+                onchange="window.message('${this._message}', document.querySelector('#meep${this._message}').value);"
             >
             <script>
-                let el_${this._message} = document.querySelector('#${this._message}');
-
-                el_${this._message}.addEventListener('input', () => {
-                    window.message('${this._message}', el_${this._message}.value);
-                });
-
-                window.signalListen('${this._update.name}', (_e, value) => {
-                    el_${this._message}.value = value;
+                window.signalListen('${this._update.name}', (e, v) => {
+                    document.querySelector('#meep${this._message}').value = v
                 });
             </script>
         `

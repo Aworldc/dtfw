@@ -1,8 +1,16 @@
-import { onOpen, enableQuitOnAllClose, Window, Button, Container, Column, Input } from "dtfw";
+import {
+    onOpen,
+    enableQuitOnAllClose,
+    Window,
+    Button,
+    Container,
+    Column,
+    Input
+} from 'dtfw'
 
 onOpen(() => {
     let win = new Window()
-    win.title("My program")
+    win.title('My program')
 
     win.devtools()
 
@@ -10,15 +18,14 @@ onOpen(() => {
     let col = new Column(win)
 
     let somethingButton = new Button(win)
-    somethingButton.text("Click me")
+    somethingButton.text('Click me')
 
     let somethingInput = new Input(win)
-    somethingInput.set("A value")
+    somethingInput.set('A value')
 
     somethingButton.click(() => {
-        let value = somethingInput.get()
-        console.log(value)
-        somethingInput.set("Juicycock")
+        console.log(somethingInput.get())
+        somethingInput.set('A new value')
     })
 
     col.insert(somethingButton)
