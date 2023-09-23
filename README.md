@@ -23,7 +23,7 @@ Not published yet. Will be at [https://npmjs.com/package/dtfw](https://npmjs.com
 - [x] Container
 - [x] Text
 - [x] Spinner
-- [ ] Options
+- [x] Options
 - [ ] Input
 - [ ] Progress
 - [ ] Checkbox
