@@ -85,3 +85,5 @@ export class Router {
 - [ ] Add more typography options
 - [ ] Make a cli (Running, scaffolding, bundling)
 - [ ] Icons in all the places
+- [ ] Fix splotchy accessibility
+- [ ] Write a gitignore
